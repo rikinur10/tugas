@@ -1,0 +1,40 @@
+#define rows 5
+#define cols 5
+
+//declare
+char name[]="Riki Nur Ihsan";
+char id[]="04211073";
+int mtx[rows][cols];
+char buffer[64];
+
+//main
+void setuttp(){
+//begin_serialCOMMS
+serial.begin(9600);//setBaudrate
+snprintf(buffer,64,"name: %s\nID: %s\n\n",name,id);
+serial.print(buffer);
+//5x5Matrix
+//process>>>>
+//rows<><><>
+for(int r=1;r<rows+1;r++){
+//colums<><><><>
+for(int c=1;c<cols+1;c++){
+//fills<><><>
+mtx[r-1][c-1]=c;
+if(r==c)mtx[r-1]=6-mtx[r-1][c-1];
+}
+}
+
+//output
+for(itnt r=0;r<rows;r++){
+//columns<><><><><>
+for(int c=0;c<cols;c++){
+//fills<><><>
+snprintf(buffer,16,"TT%d ",mtx[r][c]);
+serial.print(buffer);
+}
+serial.print("\n);
+}
+
+}
+void loop(){}
